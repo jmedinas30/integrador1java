@@ -7,6 +7,38 @@ package modelo;
  */
 public class personal {
 
+      private int idpersonal;
+    private String nombres;
+    private String apellidos;
+    private String dni;
+    private String direccion;
+    private int id_dist;
+    private int id_prov;
+   private int id_dep;
+ private String telef;
+ private String correo;
+ private String tipo;
+private String usuario;
+   private String contra;
+ private String estado;
+    
+    public personal(int idpersonal, String nombres, String apellidos, String dni, String direccion, int id_dist, int id_prov, int id_dep, String telef, String correo, String tipo, String usuario, String contra, String estado) {
+        this.idpersonal = idpersonal;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.direccion = direccion;
+        this.id_dist = id_dist;
+        this.id_prov = id_prov;
+        this.id_dep = id_dep;
+        this.telef = telef;
+        this.correo = correo;
+        this.tipo = tipo;
+        this.usuario = usuario;
+        this.contra = contra;
+        this.estado = estado;
+    }
+
     /**
      * @return the idpersonal
      */
@@ -204,20 +236,7 @@ public class personal {
     }
 
 
-  private int idpersonal;
-    private String nombres;
-    private String apellidos;
-    private String dni;
-    private String direccion;
-    private int id_dist;
-    private int id_prov;
-   private int id_dep;
- private String telef;
- private String correo;
- private String tipo;
-private String usuario;
-   private String contra;
- private String estado;
+
     /**
      * @return the idpersonal
      */
