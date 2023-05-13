@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2023 a las 18:52:24
+-- Tiempo de generación: 13-05-2023 a las 22:55:43
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 7.4.33
 
@@ -2078,6 +2078,13 @@ CREATE TABLE `personal` (
   `estado` enum('activo','inactivo') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `personal`
+--
+
+INSERT INTO `personal` (`id_personal`, `nombres`, `apellidos`, `dni`, `direccion`, `id_distrito`, `id_provincia`, `id_departamento`, `telefono`, `correo`, `tipo_personal`, `usuario`, `contrasena`, `estado`) VALUES
+(1, 'JUAN ESTEBAN', 'MEDINA MEDINA', '45269379', 'AV. CASIMIRO ULLOA 107', 1272, 127, 15, '981118517', 'juanmedina@phantom.com.pe', 'administrativo', 'jmedinas', 'Live109Mir@', 'activo');
+
 -- --------------------------------------------------------
 
 --
@@ -2613,7 +2620,7 @@ ALTER TABLE `notificacion`
 -- AUTO_INCREMENT de la tabla `personal`
 --
 ALTER TABLE `personal`
-  MODIFY `id_personal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_personal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `prescripcion_medica`
