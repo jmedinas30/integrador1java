@@ -4,10 +4,15 @@
  */
 package interfaces;
 
-/**
- *
- * @author Esteban
- */
+import modelo.personal;
+import java.util.*;
+
 public interface Ipersonal {
+
+
+personal login (String nombre, String pass);
+
+
+
     
 }
