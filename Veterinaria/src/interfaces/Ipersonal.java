@@ -12,7 +12,5 @@ public interface Ipersonal {
 
 personal login (String nombre, String pass);
 
-
-
     
 }

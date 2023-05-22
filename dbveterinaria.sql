@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2023 a las 22:55:43
+-- Tiempo de generación: 22-05-2023 a las 14:02:11
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 7.4.33
 
@@ -44,14 +44,18 @@ CREATE TABLE `cliente` (
   `id_cliente` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `apellidos` varchar(100) NOT NULL,
+  `sexo` varchar(1) NOT NULL,
+  `tdoc` varchar(100) NOT NULL,
   `dni` varchar(8) NOT NULL,
-  `telefono` varchar(15) NOT NULL,
+  `celular` varchar(50) DEFAULT NULL,
   `correo` varchar(100) NOT NULL,
   `direccion` varchar(255) NOT NULL,
   `id_departamento` int(11) NOT NULL,
   `id_provincia` int(11) NOT NULL,
   `id_distrito` int(11) NOT NULL,
-  `foto` varchar(100) DEFAULT NULL
+  `foto` blob DEFAULT NULL,
+  `Observaciones` varchar(1000) NOT NULL,
+  `fcreacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -2036,7 +2040,10 @@ CREATE TABLE `mascota` (
   `id_especie` int(11) NOT NULL,
   `id_raza` int(11) NOT NULL,
   `sexo` enum('Macho','Hembra') NOT NULL,
-  `foto` varchar(100) DEFAULT NULL
+  `peso` decimal(10,2) NOT NULL,
+  `foto` blob DEFAULT NULL,
+  `infadic` varchar(2000) DEFAULT NULL,
+  `fcreacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -2363,50 +2370,6 @@ CREATE TABLE `vacunas` (
   `descripcion` varchar(255) NOT NULL,
   `tipo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `vexsoluciones_ubigeo_departamento`
---
-
-CREATE TABLE `vexsoluciones_ubigeo_departamento` (
-  `id` int(10) UNSIGNED NOT NULL COMMENT 'Id',
-  `idDepa` int(11) DEFAULT 0 COMMENT 'id depa',
-  `departamento` text DEFAULT NULL COMMENT 'departamento',
-  `codigo_departamento` int(11) NOT NULL DEFAULT 0 COMMENT 'codigo_departamento'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='Departamento';
-
---
--- Volcado de datos para la tabla `vexsoluciones_ubigeo_departamento`
---
-
-INSERT INTO `vexsoluciones_ubigeo_departamento` (`id`, `idDepa`, `departamento`, `codigo_departamento`) VALUES
-(0, 1, 'AMAZONAS', 0),
-(0, 2, 'ANCASH', 0),
-(0, 3, 'APURIMAC', 0),
-(0, 4, 'AREQUIPA', 0),
-(0, 5, 'AYACUCHO', 0),
-(0, 6, 'CAJAMARCA', 0),
-(0, 7, 'CALLAO', 0),
-(0, 8, 'CUSCO', 0),
-(0, 9, 'HUANCAVELICA', 0),
-(0, 10, 'HUANUCO', 0),
-(0, 11, 'ICA', 0),
-(0, 12, 'JUNIN', 0),
-(0, 13, 'LA LIBERTAD', 0),
-(0, 14, 'LAMBAYEQUE', 0),
-(0, 15, 'LIMA', 0),
-(0, 16, 'LORETO', 0),
-(0, 17, 'MADRE DE DIOS', 0),
-(0, 18, 'MOQUEGUA', 0),
-(0, 19, 'PASCO', 0),
-(0, 20, 'PIURA', 0),
-(0, 21, 'PUNO', 0),
-(0, 22, 'SAN MARTIN', 0),
-(0, 23, 'TACNA', 0),
-(0, 24, 'TUMBES', 0),
-(0, 25, 'UCAYALI', 0);
 
 --
 -- Índices para tablas volcadas

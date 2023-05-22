@@ -4,12 +4,14 @@
  */
 package presentacion;
 
+import javax.swing.JInternalFrame;
+
 /**
  *
  * @author Esteban
  */
 public class Home extends javax.swing.JFrame {
-
+    private FRMlistaclientes obj = null;
     /**
      * Creates new form Home
      */
@@ -82,9 +84,19 @@ public class Home extends javax.swing.JFrame {
 
         editMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/clientes.png"))); // NOI18N
         editMenu.setMnemonic('e');
+        editMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editMenuMouseClicked(evt);
+            }
+        });
 
         cutMenuItem.setMnemonic('t');
         cutMenuItem.setText("Cut");
+        cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cutMenuItemActionPerformed(evt);
+            }
+        });
         editMenu.add(cutMenuItem);
 
         copyMenuItem.setMnemonic('y');
@@ -103,7 +115,6 @@ public class Home extends javax.swing.JFrame {
 
         helpMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/agenda.png"))); // NOI18N
         helpMenu.setMnemonic('h');
-        helpMenu.setLabel("");
 
         contentMenuItem.setMnemonic('c');
         contentMenuItem.setText("Contents");
@@ -153,6 +164,24 @@ public class Home extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
+    private void editMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMenuMouseClicked
+       if (obj ==null || obj.isClosed()){
+        obj = new FRMlistaclientes();
+        desktopPane.add(obj);
+        
+       }
+       obj.setVisible(true);
+    
+
+        
+        
+        
+    }//GEN-LAST:event_editMenuMouseClicked
+
+    private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cutMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -187,6 +216,19 @@ public class Home extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void CentrarVentaInterna (JInternalFrame internalFrame){
+    int x = (desktopPane.getWidth() / 2) - internalFrame.getWidth() /2 ;
+    int y = (desktopPane.getHeight()/ 2) - internalFrame.getHeight() /2 ;
+    
+    if (internalFrame.isShowing()){
+        internalFrame.setLocation(x, y);
+    }else {
+        desktopPane.add(internalFrame);
+        internalFrame.setLocation(x, y);
+        internalFrame.setVisible(true);
+    }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
@@ -194,7 +236,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenuItem deleteMenuItem;
-    private javax.swing.JDesktopPane desktopPane;
+    public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;

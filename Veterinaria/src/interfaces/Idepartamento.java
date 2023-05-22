@@ -4,10 +4,18 @@
  */
 package interfaces;
 
+import javax.swing.JComboBox;
+import modelo.departamento;
+import java.util.*;
 /**
  *
  * @author Esteban
  */
 public interface Idepartamento {
+
+   
     
+    
+
+  
 }
