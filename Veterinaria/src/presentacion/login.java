@@ -311,7 +311,7 @@ public class login extends javax.swing.JFrame {
         
   for (licencia x: obj2.listado()) {
         if (x.getFecha_fin().before(fecha)) {
-            JOptionPane.showMessageDialog(null, "LICENCIA VENCIDA");
+            JOptionPane.showMessageDialog(null, "TIENES PAGOS PENDIENTES");
              dispose();
              FrmLicencia obj4 = new FrmLicencia();
              obj4.show();
