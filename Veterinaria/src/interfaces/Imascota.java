@@ -4,10 +4,16 @@
  */
 package interfaces;
 
+import java.util.List;
+import modelo.cliente;
+import modelo.mascota;
+
 /**
  *
  * @author Esteban
  */
 public interface Imascota {
-    
+     void adicion (mascota ep);
+     List<mascota> listado();
+      void anula (int id);
 }

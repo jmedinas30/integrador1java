@@ -4,10 +4,15 @@
  */
 package interfaces;
 
+import java.util.List;
+import modelo.cliente;
+import modelo.raza;
+
 /**
  *
  * @author Esteban
  */
 public interface Iraza {
     
+     List<raza> listado(int cod);
 }

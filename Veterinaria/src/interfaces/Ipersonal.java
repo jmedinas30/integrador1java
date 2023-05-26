@@ -6,11 +6,12 @@ package interfaces;
 
 import modelo.personal;
 import java.util.*;
+import modelo.cliente;
 
 public interface Ipersonal {
 
 
 personal login (String nombre, String pass);
-
+ void adicion (personal ep);
     
 }

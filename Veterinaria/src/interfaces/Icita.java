@@ -4,10 +4,13 @@
  */
 package interfaces;
 
+import modelo.cita;
+import modelo.cliente;
+
 /**
  *
  * @author Esteban
  */
 public interface Icita {
-    
+     void adicion (cita ep);
 }

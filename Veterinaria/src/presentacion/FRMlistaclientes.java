@@ -4,17 +4,39 @@
  */
 package presentacion;
 
+import javax.swing.table.DefaultTableModel;
+import controlador.DAOcliente;
+import modelo.cliente;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 /** 
  * @author Esteban
  */
 public class FRMlistaclientes extends javax.swing.JInternalFrame {
 
-    
+    DAOcliente obj = new DAOcliente();
     
     public FRMlistaclientes() {
         initComponents();
+        verlista();
+        
+         cbordenar.removeAllItems();
+        cbordenar.addItem("--Seleccione--");
+        cbordenar.addItem("Por nombre del cliente");
+        cbordenar.addItem("Por apellidos del cliente");
+        
     }
+     void verlista(){
+        DefaultTableModel dt = (DefaultTableModel)tblclientes.getModel();
+        dt.setRowCount(0);
+        for (cliente x:obj.listado()){
 
+            Object v [] = {x.getIdcliente(), x.getNombre(),x.getApellidos(), x.getSexo(), x.getTdoc(), x.getDni(),x.getTelefono(),x.getCorreo(),x.getDireccion()};         
+            dt.addRow(v);
+            }
+        }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -24,47 +46,83 @@ public class FRMlistaclientes extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        txtnom = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtdni = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        cbordenar = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblclientes = new javax.swing.JTable();
         btnuevo = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnmod = new javax.swing.JButton();
+        btnimp = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        btndel = new javax.swing.JButton();
+        lblcodigo = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Listado de clientes registrados");
 
-        jLabel1.setText("Ordenar por");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel2.setText("Filtro por nombre");
-
-        jTextField1.setText("jTextField1");
+        txtnom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnomActionPerformed(evt);
+            }
+        });
+        txtnom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnomKeyPressed(evt);
+            }
+        });
 
         jLabel3.setText("Filtro por DNI");
 
-        jTextField2.setText("jTextField1");
+        txtdni.setToolTipText("");
+        txtdni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtdniKeyPressed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel1.setText("Ordenar por");
+
+        cbordenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbordenar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbordenarItemStateChanged(evt);
+            }
+        });
+        cbordenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbordenarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Filtro por nombre");
+
+        tblclientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Código", "Nombres", "Apellidos", "Sexo", "TipoDoc", "NroDoc", "Celular", "Correo", "Dirección"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblclientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblclientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblclientes);
 
+        btnuevo.setBackground(new java.awt.Color(0, 102, 102));
+        btnuevo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnuevo.setText("Nuevo");
         btnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,72 +130,110 @@ public class FRMlistaclientes extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Modificar");
+        btnmod.setBackground(new java.awt.Color(0, 102, 102));
+        btnmod.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnmod.setText("Modificar");
 
-        jButton3.setText("Imprimir");
+        btnimp.setBackground(new java.awt.Color(0, 102, 102));
+        btnimp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnimp.setText("Imprimir");
 
+        jButton4.setBackground(new java.awt.Color(0, 102, 102));
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton4.setText("Salir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        btndel.setBackground(new java.awt.Color(0, 102, 102));
+        btndel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btndel.setText("Eliminar");
+        btndel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndelActionPerformed(evt);
+            }
+        });
+
+        lblcodigo.setForeground(new java.awt.Color(255, 255, 255));
+        lblcodigo.setText("jLabel4");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(129, 129, 129)
+                        .addComponent(jLabel2)
+                        .addGap(81, 81, 81)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cbordenar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(lblcodigo)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnimp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnmod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btndel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cbordenar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtdni, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblcodigo))
+                            .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(btnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnmod, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btndel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnimp, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(129, 129, 129)
-                                .addComponent(jLabel2)
-                                .addGap(81, 81, 81)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField1))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(btnuevo)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -151,19 +247,139 @@ public class FRMlistaclientes extends javax.swing.JInternalFrame {
       
     }//GEN-LAST:event_btnuevoActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void cbordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbordenarActionPerformed
+       // TODO add your handling code here:
+    }//GEN-LAST:event_cbordenarActionPerformed
+
+    private void btndelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndelActionPerformed
+       int codigo = Integer.parseInt(lblcodigo.getText());
+        obj.anula(codigo);
+        verlista();
+      
+        
+    }//GEN-LAST:event_btndelActionPerformed
+
+    private void cbordenarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbordenarItemStateChanged
+       String selectedValue = (String) cbordenar.getSelectedItem();
+       if (selectedValue == "Por nombre del cliente"){
+       sortnombre();
+       }else {
+       sortapellido();
+       }
+    }//GEN-LAST:event_cbordenarItemStateChanged
+
+    private void txtnomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnomActionPerformed
+
+    private void txtnomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnomKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+         DefaultTableModel dt = (DefaultTableModel) tblclientes.getModel();
+dt.setRowCount(0);
+
+String nombreFiltro = txtnom.getText(); // Aquí puedes cambiar el valor por el nombre que deseas filtrar
+
+for (cliente x : obj.listado()) {
+    // Aplicar filtro por nombre
+    if (x.getNombre().equalsIgnoreCase(nombreFiltro)) {
+        Object v[] = {x.getIdcliente(), x.getNombre(), x.getApellidos(), x.getSexo(), x.getTdoc(), x.getDni(), x.getTelefono(), x.getCorreo(), x.getDireccion()};
+        dt.addRow(v);
+    }
+}
+        
+        }
+       
+        
+        
+    }//GEN-LAST:event_txtnomKeyPressed
+
+    private void txtdniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+         DefaultTableModel dt = (DefaultTableModel) tblclientes.getModel();
+dt.setRowCount(0);
+
+String nombreFiltro = txtdni.getText(); // Aquí puedes cambiar el valor por el nombre que deseas filtrar
+
+for (cliente x : obj.listado()) {
+    // Aplicar filtro por nombre
+    if (x.getDni().equalsIgnoreCase(nombreFiltro)) {
+        Object v[] = {x.getIdcliente(), x.getNombre(), x.getApellidos(), x.getSexo(), x.getTdoc(), x.getDni(), x.getTelefono(), x.getCorreo(), x.getDireccion()};
+        dt.addRow(v);
+    }
+}
+        
+        }
+    }//GEN-LAST:event_txtdniKeyPressed
+
+    private void tblclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblclientesMouseClicked
+       int f = tblclientes.getSelectedRow();
+        lblcodigo.setText(tblclientes.getValueAt(f, 0).toString());
+    }//GEN-LAST:event_tblclientesMouseClicked
+
+    
+    void sortnombre(){
+    DefaultTableModel dt = (DefaultTableModel) tblclientes.getModel();
+dt.setRowCount(0);
+
+// Obtener la lista de clientes
+List<cliente> listaClientes = obj.listado();
+
+// Ordenar la lista por nombre
+Collections.sort(listaClientes, new Comparator<cliente>() {
+    @Override
+    public int compare(cliente c1, cliente c2) {
+        return c1.getNombre().compareTo(c2.getNombre());
+    }
+});
+
+// Agregar los datos ordenados a la tabla
+for (cliente x : listaClientes) {
+    Object v[] = {x.getIdcliente(), x.getNombre(), x.getApellidos(), x.getSexo(), x.getTdoc(), x.getDni(), x.getTelefono(), x.getCorreo(), x.getDireccion()};
+    dt.addRow(v);
+}         // TODO add your handling code here:
+    }
+    
+    
+    
+        void sortapellido(){
+    DefaultTableModel dt = (DefaultTableModel) tblclientes.getModel();
+dt.setRowCount(0);
+
+// Obtener la lista de clientes
+List<cliente> listaClientes = obj.listado();
+
+// Ordenar la lista por nombre
+Collections.sort(listaClientes, new Comparator<cliente>() {
+    @Override
+    public int compare(cliente c1, cliente c2) {
+        return c1.getApellidos().compareTo(c2.getApellidos());
+    }
+});
+for (cliente x : listaClientes) {
+    Object v[] = {x.getIdcliente(), x.getNombre(), x.getApellidos(), x.getSexo(), x.getTdoc(), x.getDni(), x.getTelefono(), x.getCorreo(), x.getDireccion()};
+    dt.addRow(v);
+}         // TODO add your handling code here:
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btndel;
+    private javax.swing.JButton btnimp;
+    private javax.swing.JButton btnmod;
     private javax.swing.JButton btnuevo;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> cbordenar;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblcodigo;
+    private javax.swing.JTable tblclientes;
+    private javax.swing.JTextField txtdni;
+    private javax.swing.JTextField txtnom;
     // End of variables declaration//GEN-END:variables
 }

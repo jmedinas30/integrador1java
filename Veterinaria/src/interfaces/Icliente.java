@@ -4,10 +4,15 @@
  */
 package interfaces;
 
+import java.util.List;
+import modelo.cliente;
+
 /**
  *
  * @author Esteban
  */
 public interface Icliente {
-    
+    void adicion (cliente ep);
+  void anula (int id);
+     List<cliente> listado();
 }

@@ -130,6 +130,16 @@ public class login extends javax.swing.JFrame {
         jLabel4.setText("Contraseña");
 
         txtpass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        txtpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpassActionPerformed(evt);
+            }
+        });
+        txtpass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpassKeyPressed(evt);
+            }
+        });
 
         btninicio.setBackground(new java.awt.Color(0, 102, 102));
         btninicio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -226,6 +236,10 @@ public class login extends javax.swing.JFrame {
             
             if (ep == null){
                 JOptionPane.showMessageDialog(null,"USUARIO INCORRECTO");
+                txtuser.setText("");
+                txtpass.setText("");
+                txtuser.requestFocus();
+                
             }else {
             dispose();
             JOptionPane.showMessageDialog(null,"Bienvenido " + user);
@@ -240,6 +254,37 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btncancelActionPerformed
+
+    private void txtpassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyPressed
+      if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+         String user = txtuser.getText();
+        String pass = txtpass.getText();
+        
+        if(user.isEmpty()|| pass.isEmpty()){
+        JOptionPane.showMessageDialog(null,"Ambos campos son obligatorios");
+        }else {
+            personal ep = obj.login(user, pass);
+            
+            if (ep == null){
+                JOptionPane.showMessageDialog(null,"USUARIO INCORRECTO");
+                txtuser.setText("");
+                txtpass.setText("");
+                txtuser.requestFocus();
+                
+            }else {
+            dispose();
+            JOptionPane.showMessageDialog(null,"Bienvenido " + user);
+            Home obj = new Home();
+            obj.show();
+            }
+        }
+      
+      }
+    }//GEN-LAST:event_txtpassKeyPressed
+
+    private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpassActionPerformed
 
      
     /**

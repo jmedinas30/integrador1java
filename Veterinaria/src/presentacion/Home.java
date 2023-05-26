@@ -11,7 +11,11 @@ import javax.swing.JInternalFrame;
  * @author Esteban
  */
 public class Home extends javax.swing.JFrame {
-    private FRMlistaclientes obj = null;
+
+     private FRMlistaclientes obj2 = null;
+    private FRMlistamascota obj3 = null;
+    private FRMagenda obj4 = null;
+     private FRMlistapersonal obj5 = null;
     /**
      * Creates new form Home
      */
@@ -33,18 +37,8 @@ public class Home extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        openMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        saveAsMenuItem = new javax.swing.JMenuItem();
-        exitMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -57,29 +51,11 @@ public class Home extends javax.swing.JFrame {
         fileMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/mascota.png"))); // NOI18N
         fileMenu.setMnemonic('f');
         fileMenu.setMargin(null);
-
-        openMenuItem.setMnemonic('o');
-        openMenuItem.setText("Open");
-        fileMenu.add(openMenuItem);
-
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Save");
-        fileMenu.add(saveMenuItem);
-
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Save As ...");
-        saveAsMenuItem.setDisplayedMnemonicIndex(5);
-        fileMenu.add(saveAsMenuItem);
-
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
+        fileMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fileMenuMouseClicked(evt);
             }
         });
-        fileMenu.add(exitMenuItem);
-
         menuBar.add(fileMenu);
 
         editMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/clientes.png"))); // NOI18N
@@ -89,41 +65,15 @@ public class Home extends javax.swing.JFrame {
                 editMenuMouseClicked(evt);
             }
         });
-
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
-        cutMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cutMenuItemActionPerformed(evt);
-            }
-        });
-        editMenu.add(cutMenuItem);
-
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        editMenu.add(copyMenuItem);
-
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        editMenu.add(pasteMenuItem);
-
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        editMenu.add(deleteMenuItem);
-
         menuBar.add(editMenu);
 
         helpMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/agenda.png"))); // NOI18N
         helpMenu.setMnemonic('h');
-
-        contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Contents");
-        helpMenu.add(contentMenuItem);
-
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
-        helpMenu.add(aboutMenuItem);
-
+        helpMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                helpMenuMouseClicked(evt);
+            }
+        });
         menuBar.add(helpMenu);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/historial.png"))); // NOI18N
@@ -136,12 +86,22 @@ public class Home extends javax.swing.JFrame {
         menuBar.add(jMenu4);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/login.png"))); // NOI18N
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
         menuBar.add(jMenu6);
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/ayuda.png"))); // NOI18N
         menuBar.add(jMenu7);
 
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/salir.png"))); // NOI18N
+        jMenu8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu8MouseClicked(evt);
+            }
+        });
         menuBar.add(jMenu8);
 
         setJMenuBar(menuBar);
@@ -160,27 +120,50 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
-
     private void editMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMenuMouseClicked
-       if (obj ==null || obj.isClosed()){
-        obj = new FRMlistaclientes();
-        desktopPane.add(obj);
+       
+      if (obj2 ==null || obj2.isClosed()){
+        obj2 = new FRMlistaclientes();
+        desktopPane.add(obj2);
         
        }
-       obj.setVisible(true);
-    
+       obj2.setVisible(true);
 
         
         
         
     }//GEN-LAST:event_editMenuMouseClicked
 
-    private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cutMenuItemActionPerformed
+    private void fileMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fileMenuMouseClicked
+if (obj3 ==null || obj3.isClosed()){
+        obj3 = new FRMlistamascota();
+        desktopPane.add(obj3);
+        
+       }
+       obj3.setVisible(true); 
+    }//GEN-LAST:event_fileMenuMouseClicked
+
+    private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu8MouseClicked
+
+    private void helpMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpMenuMouseClicked
+        if (obj4 ==null || obj4.isClosed()){
+        obj4 = new FRMagenda();
+        desktopPane.add(obj4);
+        
+       }
+       obj4.setVisible(true); 
+    }//GEN-LAST:event_helpMenuMouseClicked
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        if (obj5 ==null || obj5.isClosed()){
+        obj5 = new FRMlistapersonal();
+        desktopPane.add(obj5);
+        
+       }
+       obj5.setVisible(true); 
+    }//GEN-LAST:event_jMenu6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -231,14 +214,8 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
     public static javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu editMenu;
-    private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu jMenu2;
@@ -248,10 +225,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JMenuItem pasteMenuItem;
-    private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }

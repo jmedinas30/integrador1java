@@ -9,19 +9,25 @@ package modelo;
  * @author Esteban
  */
 public class cliente {
- private int idcliente;
-    private String nombre;
-    private String apellidos;
-    private String dni;
-    private String telefono;
-    private String correo;
-    private String direccion;
-    private int id_dpto;
-    private int id_pro;
-    private int id_dist;
-    private String foto;
 
-    public cliente(int idcliente, String nombre, String apellidos, String dni, String telefono, String correo, String direccion, int id_dpto, int id_pro, int id_dist, String foto) {
+    /**
+     * @return the foto
+     */
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    /**
+     * @param foto the foto to set
+     */
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    /**
+     * @return the sexo
+     */
+    public cliente(int idcliente, String nombre, String apellidos, String dni, String telefono, String correo, String direccion, int id_dpto, int id_pro, int id_dist, byte[] foto, String sexo, String tdoc, String obs, String fcreacion) {
         this.idcliente = idcliente;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -33,7 +39,92 @@ public class cliente {
         this.id_pro = id_pro;
         this.id_dist = id_dist;
         this.foto = foto;
+        this.sexo = sexo;
+        this.tdoc = tdoc;
+        this.obs = obs;
+        this.fcreacion = fcreacion;
     }
+
+     private int idcliente;
+    private String nombre;
+    private String apellidos;
+    private String dni;
+    private String telefono;
+    private String correo;
+    private String direccion;
+    private int id_dpto;
+    private int id_pro;
+    private int id_dist;
+    private byte[] foto;
+    private String sexo;
+    private String tdoc;
+    private String obs;
+    private String fcreacion;
+    
+    
+    public cliente(){
+    
+    }
+    
+     
+
+    
+    public String getSexo() {
+        return sexo;
+    }
+
+    /**
+     * @param sexo the sexo to set
+     */
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    /**
+     * @return the tdoc
+     */
+    public String getTdoc() {
+        return tdoc;
+    }
+
+    /**
+     * @param tdoc the tdoc to set
+     */
+    public void setTdoc(String tdoc) {
+        this.tdoc = tdoc;
+    }
+
+    /**
+     * @return the obs
+     */
+    public String getObs() {
+        return obs;
+    }
+
+    /**
+     * @param obs the obs to set
+     */
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
+
+    /**
+     * @return the fcreacion
+     */
+    public String getFcreacion() {
+        return fcreacion;
+    }
+
+    /**
+     * @param fcreacion the fcreacion to set
+     */
+    public void setFcreacion(String fcreacion) {
+        this.fcreacion = fcreacion;
+    }
+
+   
+
+   
     /**
      * @return the idcliente
      */
@@ -177,16 +268,7 @@ public class cliente {
     /**
      * @return the foto
      */
-    public String getFoto() {
-        return foto;
-    }
-
-    /**
-     * @param foto the foto to set
-     */
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
+    
    
             
     

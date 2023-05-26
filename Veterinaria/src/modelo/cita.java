@@ -11,17 +11,38 @@ import java.util.Date;
  * @author Esteban
  */
 public class cita {
-  private int idcita;
-    private Date fecha_hora;
-    private int idmascota;
-    private int idveterinario;
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public cita (){
     
-    public cita(int idcita, Date fecha_hora, int idmascota, int idveterinario) {
+    }
+    public cita(int idcita, Date fecha_hora, int idmascota, int idveterinario, String estado) {
         this.idcita = idcita;
         this.fecha_hora = fecha_hora;
         this.idmascota = idmascota;
         this.idveterinario = idveterinario;
+        this.estado = estado;
     }
+  private int idcita;
+    private Date fecha_hora;
+    private int idmascota;
+    private int idveterinario;
+    private String estado;
+    
+   
 
     /**
      * @return the idcita
