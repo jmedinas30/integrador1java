@@ -6,16 +6,21 @@
 
 package presentacion;
 
+import controlador.DAOlicencia;
 import controlador.DAOpersonal;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import modelo.licencia;
 import modelo.personal;
 /**
  *
@@ -24,6 +29,7 @@ import modelo.personal;
 public class login extends javax.swing.JFrame {
 
     DAOpersonal obj = new DAOpersonal();
+      DAOlicencia obj2 = new DAOlicencia();
     
     /**
      * Creates new form login
@@ -225,8 +231,7 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btninicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninicioActionPerformed
-        // TODO add your handling code here:
-        String user = txtuser.getText();
+   String user = txtuser.getText();
         String pass = txtpass.getText();
         
         if(user.isEmpty()|| pass.isEmpty()){
@@ -241,13 +246,34 @@ public class login extends javax.swing.JFrame {
                 txtuser.requestFocus();
                 
             }else {
-            dispose();
+                
+         
+ LocalDate fechaActual = LocalDate.now();
+        
+        // Convertir LocalDate a String con formato "yyyy-MM-dd"
+        String fechaString = fechaActual.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        
+        // Convertir String a Date
+        Date fecha = java.sql.Date.valueOf(fechaString);
+        
+        
+  for (licencia x: obj2.listado()) {
+        if (x.getFecha_fin().before(fecha)) {
+            JOptionPane.showMessageDialog(null, "TIENE PAGOS PENDIENTES.");
+             dispose();
+             FrmLicencia obj4 = new FrmLicencia();
+             obj4.show();
+        }else{
+         dispose();
             JOptionPane.showMessageDialog(null,"Bienvenido " + user);
             Home obj = new Home();
             obj.show();
+        } 
+    }    
+                
+           
             }
         }
-        
     }//GEN-LAST:event_btninicioActionPerformed
 
     private void btncancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelActionPerformed
@@ -272,10 +298,32 @@ public class login extends javax.swing.JFrame {
                 txtuser.requestFocus();
                 
             }else {
-            dispose();
+                
+         
+ LocalDate fechaActual = LocalDate.now();
+        
+        // Convertir LocalDate a String con formato "yyyy-MM-dd"
+        String fechaString = fechaActual.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        
+        // Convertir String a Date
+        Date fecha = java.sql.Date.valueOf(fechaString);
+        
+        
+  for (licencia x: obj2.listado()) {
+        if (x.getFecha_fin().before(fecha)) {
+            JOptionPane.showMessageDialog(null, "LICENCIA VENCIDA");
+             dispose();
+             FrmLicencia obj4 = new FrmLicencia();
+             obj4.show();
+        }else{
+         dispose();
             JOptionPane.showMessageDialog(null,"Bienvenido " + user);
             Home obj = new Home();
             obj.show();
+        } 
+    }    
+                
+           
             }
         }
       
