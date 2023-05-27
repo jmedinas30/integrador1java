@@ -4,7 +4,13 @@
  */
 package presentacion;
 
+import java.net.URL;
 import javax.swing.JInternalFrame;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 
 /**
  *
@@ -15,7 +21,9 @@ public class Home extends javax.swing.JFrame {
      private FRMlistaclientes obj2 = null;
     private FRMlistamascota obj3 = null;
     private FRMagenda obj4 = null;
+      private FRMlistascitas obj6 = null;
      private FRMlistapersonal obj5 = null;
+     private FRMprueba obj8 = null;
     /**
      * Creates new form Home
      */
@@ -24,6 +32,44 @@ public class Home extends javax.swing.JFrame {
         setTitle("Bienvenido a la clinica Veterinaria");
         setExtendedState(MAXIMIZED_BOTH);
     }
+    
+    private void abrirPDF() {
+        // Obtener la URL del archivo PDF dentro del paquete "recursos"
+         URL pdfURL = getClass().getResource("/recursos/Manual_sistema.pdf");
+
+        if (pdfURL != null) {
+            try {
+                // Convertir la URL a un objeto File
+                File archivoPDF = new File(pdfURL.toURI());
+
+                // Comprobamos si el sistema soporta la operación de abrir un archivo
+                if (Desktop.isDesktopSupported()) {
+                    Desktop desktop = Desktop.getDesktop();
+
+                    // Comprobamos si el archivo existe
+                    if (archivoPDF.exists()) {
+                        try {
+                            // Abrimos el archivo PDF con la aplicación predeterminada
+                            desktop.open(archivoPDF);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("El archivo no existe.");
+                    }
+                } else {
+                    System.out.println("La operación no es soportada por el sistema.");
+                }
+            } catch (URISyntaxException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            System.out.println("No se pudo encontrar el archivo PDF.");
+        }
+    }
+
+	
+	
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,8 +85,9 @@ public class Home extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         editMenu = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
@@ -74,13 +121,27 @@ public class Home extends javax.swing.JFrame {
                 helpMenuMouseClicked(evt);
             }
         });
+
+        jMenuItem1.setText("Citas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        helpMenu.add(jMenuItem1);
+
+        jMenuItem3.setText("Citas Programadas");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        helpMenu.add(jMenuItem3);
+
         menuBar.add(helpMenu);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/historial.png"))); // NOI18N
         menuBar.add(jMenu2);
-
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/servicios.png"))); // NOI18N
-        menuBar.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/medico.png"))); // NOI18N
         menuBar.add(jMenu4);
@@ -94,6 +155,11 @@ public class Home extends javax.swing.JFrame {
         menuBar.add(jMenu6);
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/ayuda.png"))); // NOI18N
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
         menuBar.add(jMenu7);
 
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/salir.png"))); // NOI18N
@@ -148,12 +214,7 @@ dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu8MouseClicked
 
     private void helpMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpMenuMouseClicked
-        if (obj4 ==null || obj4.isClosed()){
-        obj4 = new FRMagenda();
-        desktopPane.add(obj4);
-        
-       }
-       obj4.setVisible(true); 
+      
     }//GEN-LAST:event_helpMenuMouseClicked
 
     private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
@@ -164,6 +225,32 @@ dispose();        // TODO add your handling code here:
        }
        obj5.setVisible(true); 
     }//GEN-LAST:event_jMenu6MouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+       if (obj4 ==null || obj4.isClosed()){
+        obj4 = new FRMagenda();
+        desktopPane.add(obj4);
+        
+       }
+       obj4.setVisible(true); 
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+         if (obj6 ==null || obj6.isClosed()){
+        obj6 = new FRMlistascitas();
+        desktopPane.add(obj6);
+        
+       }
+       obj6.setVisible(true); 
+                                              
+
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+        abrirPDF();
+    }//GEN-LAST:event_jMenu7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -219,11 +306,12 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 

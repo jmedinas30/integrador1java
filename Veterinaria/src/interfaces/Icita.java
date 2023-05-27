@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import java.util.List;
 import modelo.cita;
 import modelo.cliente;
 
@@ -13,4 +14,5 @@ import modelo.cliente;
  */
 public interface Icita {
      void adicion (cita ep);
+      List<cita> listado2();
 }

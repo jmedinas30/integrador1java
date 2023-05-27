@@ -665,16 +665,7 @@ cli.setFoto(imageBytes);
        
        obj.modifica(cli);
          JOptionPane.showMessageDialog(null, "MODIFICADO CORRECTAMENTE");  
-        
-         
-       
-               
-               
-       
-       
-        
-        
-        
+dispose();
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

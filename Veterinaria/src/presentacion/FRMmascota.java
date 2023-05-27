@@ -586,7 +586,7 @@ int días = periodo.getDays();
 // Muestra el resultado
 String resultado = "Años: " + años + ", Meses: " + meses + ", Días: " + días;
 lbledad.setText(resultado);
-JOptionPane.showMessageDialog(null, resultado);
+
       
       
     }//GEN-LAST:event_jButton2ActionPerformed
