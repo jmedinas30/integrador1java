@@ -16,6 +16,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.ConexionMysql;
 import modelo.cliente;
+import modelo.mascota;
 
 /**
  *
@@ -93,6 +94,8 @@ public class DAOcliente implements Icliente{
     }
   
   
+  
+  
    public void anula(int id) {
          Connection cn = ConexionMysql.getConexion();
         try {
@@ -106,5 +109,30 @@ public class DAOcliente implements Icliente{
         e.printStackTrace();
         }
     }
+      public List<cliente> listado2(int id) {
+      List<cliente> lista = new ArrayList();
+      
+      Connection cn = ConexionMysql.getConexion();
+      
+        try {
+            String sql = "select concat(nombre,' ',apellidos) as cliente from cliente where id_cliente = ?";
+            PreparedStatement st = cn.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+            cliente ep = new cliente();
+             ep.setNombre(rs.getString(1));
+            
+            lista.add(ep);
+            
+                
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      return lista;
+}
     
 }

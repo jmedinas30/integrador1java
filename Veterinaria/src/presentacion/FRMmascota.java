@@ -18,15 +18,24 @@ import controlador.DAOmascota;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.ConexionMysql;
 import modelo.cliente;
 import modelo.mascota;
 import modelo.provincia;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 /**
@@ -70,7 +79,7 @@ public class FRMmascota extends javax.swing.JInternalFrame {
         txtraza.setEnabled(false);
         LocalDate fechaActual = LocalDate.now();
         this.txtfecha.setText(fechaActual.toString());
-        
+      btnimp.setEnabled(false);
         
     }
     
@@ -139,7 +148,7 @@ public class FRMmascota extends javax.swing.JInternalFrame {
         lblcodraza = new javax.swing.JLabel();
         lblruta = new javax.swing.JLabel();
         btnadd1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnimp = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -457,9 +466,14 @@ public class FRMmascota extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(0, 102, 102));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton6.setText("Imprimir ficha");
+        btnimp.setBackground(new java.awt.Color(0, 102, 102));
+        btnimp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnimp.setText("Imprimir ficha");
+        btnimp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnimpActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(0, 102, 102));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -488,7 +502,7 @@ public class FRMmascota extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton6)
+                                .addComponent(btnimp)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnadd1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -510,7 +524,7 @@ public class FRMmascota extends javax.swing.JInternalFrame {
                     .addComponent(btnadd1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnimp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(52, 52, 52)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -667,7 +681,8 @@ try {
         obj.adicion(cli);
     
         JOptionPane.showMessageDialog(null, "AÑADIDO CORRECTAMENTE"); 
-        dispose();
+       btnimp.setEnabled(true);
+        
         
         
 
@@ -715,16 +730,31 @@ try {
       obj.setVisible(true);       
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btnimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimpActionPerformed
+String jasperFile = "src/reportes/fichamascota.jasper";
+
+ try {
+            // Cargar el archivo Jasper
+            Connection con = ConexionMysql.getConexion();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile, null,con);
+
+            // Mostrar el informe en el visor JasperViewer
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnimpActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Cboespecie;
     private javax.swing.JButton btnadd1;
     private javax.swing.JButton btnbqda;
+    private javax.swing.JButton btnimp;
     private com.toedter.calendar.JDateChooser fnac;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

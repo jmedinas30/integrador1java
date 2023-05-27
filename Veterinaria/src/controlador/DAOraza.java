@@ -70,4 +70,31 @@ public class DAOraza implements Iraza{
         }
       return lista;
 }
+      
+      
+      public List<raza> listado2(int id) {
+      List<raza> lista = new ArrayList();
+      
+      Connection cn = ConexionMysql.getConexion();
+      
+        try {
+            String sql = "select id_raza, nombre from raza where id_raza = ?";
+             PreparedStatement st = cn.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+            raza ep = new raza();
+            ep.setId_raza(rs.getInt(1));
+            ep.setNombre(rs.getString(2));
+            lista.add(ep);
+            
+                
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      return lista;
+}
 }

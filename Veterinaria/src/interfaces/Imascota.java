@@ -16,4 +16,5 @@ public interface Imascota {
      void adicion (mascota ep);
      List<mascota> listado();
       void anula (int id);
+      void modifica (mascota ep);
 }

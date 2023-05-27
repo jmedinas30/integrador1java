@@ -44,6 +44,7 @@ public class DAOmascota implements Imascota {
     }
     
     
+    @Override
      public List<mascota> listado() {
       List<mascota> lista = new ArrayList();
       
@@ -81,6 +82,7 @@ public class DAOmascota implements Imascota {
       return lista;
     }
      
+    @Override
      public void anula(int id) {
          Connection cn = ConexionMysql.getConexion();
         try {
@@ -95,10 +97,11 @@ public class DAOmascota implements Imascota {
         }
     }
      
+    @Override
       public void modifica(mascota ep) {
         Connection cn = ConexionMysql.getConexion();
         try {
-            String sql= "UPDATE mascota SET nombre=?,fecha_nacimiento=?,id_cliente=?,id_especie=?,id_raza=?,sexo=?,peso=?,foto=?, infadic=? WHERE id_mascota = ? ";
+            String sql= "UPDATE mascota SET nombre=?,fecha_nacimiento=?,id_cliente=?,id_especie=?,id_raza=?,sexo=?,peso=?,infadic=?,foto=? WHERE id_mascota = ? ";
             PreparedStatement st = cn.prepareStatement(sql);
             st.setString(1, ep.getNombre());
             st.setObject(2, ep.getFecha_nac());
@@ -107,8 +110,8 @@ public class DAOmascota implements Imascota {
               st.setInt(5, ep.getId_raza());
            st.setString(6, ep.getSexo());
            st.setFloat(7, ep.getPeso());
-           st.setBytes(8,ep.getFoto());
-           st.setString(9, ep.getInfadi());
+           st.setString(8, ep.getInfadi());
+            st.setBytes(9, ep.getFoto());
            st.setInt(10, ep.getId_mascota());
             st.executeUpdate();
             

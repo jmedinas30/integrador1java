@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.Image;
 import java.time.LocalDate;
 import java.util.Date;
@@ -15,6 +16,8 @@ import controlador.DAOdepartamento;
 import controlador.DAOprovincia;
 import controlador.DAOdistrito;
 import controlador.DAOcliente;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,6 +26,9 @@ import javax.swing.table.DefaultTableModel;
 import modelo.ConexionMysql;
 import modelo.cliente;
 import modelo.provincia;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 /**
@@ -51,6 +57,7 @@ public class FRMclientes extends javax.swing.JInternalFrame {
         cbtipo.addItem("CARNET EXTRANJERIA");
         cbtipo.addItem("PASAPORTE");
         de.listar_departamento(cbodep);
+        btnimp.setEnabled(false);
         
         
         LocalDate fechaActual = LocalDate.now();
@@ -126,7 +133,7 @@ public class FRMclientes extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtobs = new javax.swing.JTextArea();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton3 = new javax.swing.JButton();
+        btnimp = new javax.swing.JButton();
         btnadd = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -230,6 +237,12 @@ public class FRMclientes extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Email");
 
+        txtcel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcelKeyTyped(evt);
+            }
+        });
+
         jLabel10.setText("Observaciones / Información adicional ");
 
         jLabel12.setText("Dirección");
@@ -239,6 +252,12 @@ public class FRMclientes extends javax.swing.JInternalFrame {
         jLabel14.setText("Provincia");
 
         jLabel15.setText("Distrito");
+
+        txtdni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtdniKeyTyped(evt);
+            }
+        });
 
         cbodep.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbodep.addItemListener(new java.awt.event.ItemListener() {
@@ -386,9 +405,14 @@ public class FRMclientes extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton3.setBackground(new java.awt.Color(0, 102, 102));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setText("Imprimir ficha");
+        btnimp.setBackground(new java.awt.Color(0, 102, 102));
+        btnimp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnimp.setText("Imprimir ficha");
+        btnimp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnimpActionPerformed(evt);
+            }
+        });
 
         btnadd.setBackground(new java.awt.Color(0, 102, 102));
         btnadd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -438,7 +462,7 @@ public class FRMclientes extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButton3)
+                                .addComponent(btnimp)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnadd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -469,7 +493,7 @@ public class FRMclientes extends javax.swing.JInternalFrame {
                     .addComponent(btnadd, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnimp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -483,7 +507,7 @@ public class FRMclientes extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 587, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 578, Short.MAX_VALUE)
         );
 
         pack();
@@ -589,7 +613,9 @@ cli.setFoto(imageBytes);
        
        
        obj.adicion(cli);
-         JOptionPane.showMessageDialog(null, "AÑADIDO CORRECTAMENTE");   
+         JOptionPane.showMessageDialog(null, "AÑADIDO CORRECTAMENTE");  
+         btnimp.setEnabled(true);
+         
        
                
                
@@ -604,15 +630,64 @@ cli.setFoto(imageBytes);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void txtdniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdniKeyTyped
+        // TODO add your handling code here:
+
+        String valor;
+        valor = cbtipo.getSelectedItem().toString();
+
+        if(valor == "DNI"){
+            char c = evt.getKeyChar();
+            if (!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE)
+                || txtdni.getText().length() >= 8) {
+                evt.consume();
+                Toolkit.getDefaultToolkit().beep();}
+
+        }else{
+            if(txtdni.getText().length()>=10){
+                evt.consume();
+                Toolkit.getDefaultToolkit().beep();
+            }
+
+        }
+
+    }//GEN-LAST:event_txtdniKeyTyped
+
+    private void txtcelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcelKeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+            if (!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE)
+                || txtcel.getText().length() >= 9) {
+                evt.consume();
+                Toolkit.getDefaultToolkit().beep();}
+    }//GEN-LAST:event_txtcelKeyTyped
+
+    private void btnimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimpActionPerformed
+    
+        String jasperFile = "src/reportes/fichacliente.jasper";
+
+ try {
+            // Cargar el archivo Jasper
+            java.sql.Connection con = ConexionMysql.getConexion();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile, null,con);
+
+            // Mostrar el informe en el visor JasperViewer
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      
+    }//GEN-LAST:event_btnimpActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnadd;
+    private javax.swing.JButton btnimp;
     private javax.swing.JComboBox<String> cbodep;
     private javax.swing.JComboBox<String> cbodis;
     private javax.swing.JComboBox<String> cboprov;
     private javax.swing.JComboBox<String> cbtipo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

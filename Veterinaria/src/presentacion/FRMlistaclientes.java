@@ -6,10 +6,15 @@ package presentacion;
 
 import javax.swing.table.DefaultTableModel;
 import controlador.DAOcliente;
+import java.sql.Connection;
 import modelo.cliente;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import modelo.ConexionMysql;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 /** 
  * @author Esteban
  */
@@ -20,7 +25,8 @@ public class FRMlistaclientes extends javax.swing.JInternalFrame {
     public FRMlistaclientes() {
         initComponents();
         verlista();
-        
+        btndel.setEnabled(false);
+        btnmod.setEnabled(false);
          cbordenar.removeAllItems();
         cbordenar.addItem("--Seleccione--");
         cbordenar.addItem("Por nombre del cliente");
@@ -137,6 +143,11 @@ public class FRMlistaclientes extends javax.swing.JInternalFrame {
         btnimp.setBackground(new java.awt.Color(0, 102, 102));
         btnimp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnimp.setText("Imprimir");
+        btnimp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnimpActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(0, 102, 102));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -318,7 +329,26 @@ for (cliente x : obj.listado()) {
     private void tblclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblclientesMouseClicked
        int f = tblclientes.getSelectedRow();
         lblcodigo.setText(tblclientes.getValueAt(f, 0).toString());
+        btndel.setEnabled(true);
+        btnmod.setEnabled(true);
+        
     }//GEN-LAST:event_tblclientesMouseClicked
+
+    private void btnimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimpActionPerformed
+        // TODO add your handling code here:
+        String jasperFile = "src/reportes/listacliente.jasper";
+
+        try {
+            // Cargar el archivo Jasper
+            Connection con = ConexionMysql.getConexion();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile, null,con);
+
+            // Mostrar el informe en el visor JasperViewer
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnimpActionPerformed
 
     
     void sortnombre(){

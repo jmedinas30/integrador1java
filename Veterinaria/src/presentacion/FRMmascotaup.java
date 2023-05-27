@@ -15,12 +15,15 @@ import controlador.DAOdepartamento;
 import controlador.DAOprovincia;
 import controlador.DAOdistrito;
 import controlador.DAOmascota;
+import controlador.DAOcliente;
+import controlador.DAOraza;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Period;
 import java.time.ZoneId;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.ConexionMysql;
@@ -42,6 +45,8 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
    ButtonGroup sexo;
    private FRMlistamascota mascota;
    DAOmascota obj = new DAOmascota();
+   DAOcliente obj2 = new DAOcliente();
+    DAOraza obj3 = new DAOraza();
    private String dato;
    
    public void setFormulario2(FRMlistamascota mascota) {
@@ -67,8 +72,59 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
            txtreg.setText(String.valueOf(x.getId_mascota()));
            txtmascota.setText(x.getNombre());
            lblcodigo.setText(String.valueOf(x.getId_cliente()));
-            
+           txtpeso.setText(String.valueOf(x.getPeso()));
+           txtfecha.setText(String.valueOf(x.getFcreacion()));
+           lblcodraza.setText(String.valueOf(x.getId_raza()));
+           txtobs.setText(x.getInfadi());
+byte[] imageBytes = x.getFoto(); // Supongamos que x es tu objeto y x.getFoto() devuelve el array de bytes de la imagen
+ImageIcon imageIcon = new ImageIcon(imageBytes);
+// Obtiene la imagen original del ImageIcon
+Image imagenOriginal = imageIcon.getImage();
+// Redimensiona la imagen al tamaño deseado
+Image imagenRedimensionada = imagenOriginal.getScaledInstance(176, 198, Image.SCALE_SMOOTH);
+// Crea un nuevo ImageIcon con la imagen redimensionada
+ImageIcon imagenRedimensionadaIcono = new ImageIcon(imagenRedimensionada);
+
+lblimagen.setIcon(imagenRedimensionadaIcono);
+
+
+
+            fnac.setDate((x.getFecha_nac()));
+           
+           String  sexo  = x.getSexo();
+           if (sexo == "Macho"){
+           rbtmen.setSelected(true);
+            } else {
+           rbtfem.setSelected(true);
+           }
+           
+           String especie = x.getEspecie();
+           
+           if(especie =="1"){
+               Cboespecie.setSelectedItem("GATOS");
+           }    else{
+                         Cboespecie.setSelectedItem("PERROS");
+                       }
+               
+           
+           
+                   
+           
             }
+         int cod_cli = Integer.parseInt(lblcodigo.getText());
+         for (cliente x:obj2.listado2(cod_cli)){
+             
+              txtcliente.setText(x.getNombre());
+              
+             
+         }
+         int cod_raza = Integer.parseInt(lblcodraza.getText());
+         for (raza x:obj3.listado2(cod_raza)){
+             
+              txtraza.setText(x.getNombre());
+              
+             
+         }
    
 }
    
@@ -90,7 +146,8 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
         txtraza.setEnabled(false);
         LocalDate fechaActual = LocalDate.now();
         this.txtfecha.setText(fechaActual.toString());
-        
+        txtcliente.setEnabled(false);
+        Cboespecie.setEnabled(false);
         
     }
     
@@ -128,7 +185,6 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
         txtfecha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtcliente = new javax.swing.JTextField();
-        btnbqda = new javax.swing.JButton();
         lblcodigo = new javax.swing.JLabel();
         lblmascota = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -156,7 +212,6 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         txtraza = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         lblcodraza = new javax.swing.JLabel();
         lblruta = new javax.swing.JLabel();
         btnadd1 = new javax.swing.JButton();
@@ -184,16 +239,11 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
 
         jLabel1.setText("N° de registro");
 
-        btnbqda.setText("Buscar");
-        btnbqda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbqdaActionPerformed(evt);
-            }
-        });
+        lblcodigo.setForeground(new java.awt.Color(255, 255, 255));
+        lblcodigo.setText("idcliente-oculto");
 
-        lblcodigo.setText("jLabel4");
-
-        lblmascota.setText("jLabel4");
+        lblmascota.setForeground(new java.awt.Color(255, 255, 255));
+        lblmascota.setText("lblmascota-oculto");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -201,24 +251,22 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
-                        .addGap(45, 45, 45)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblcodigo)
-                        .addGap(57, 57, 57)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblmascota))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtreg, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnbqda)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,9 +281,8 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtreg, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbqda, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -310,7 +357,7 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
             }
         });
 
-        lbledad.setText("Edad: 1 año, 0 meses y 2 dias");
+        lbledad.setText("...");
 
         jLabel16.setText("Ruta:");
 
@@ -330,13 +377,7 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setText("Buscar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
+        lblcodraza.setForeground(new java.awt.Color(255, 255, 255));
         lblcodraza.setText("jLabel4");
 
         lblruta.setText("...");
@@ -392,12 +433,13 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
                                                 .addComponent(jLabel8))))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(Cboespecie, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtraza, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblcodraza)
-                                            .addComponent(jButton3))))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(118, 118, 118)
+                                                .addComponent(lblcodraza))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txtraza, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addGap(0, 22, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblimagen, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -454,8 +496,7 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Cboespecie, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtraza, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtraza, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblimagen, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,11 +563,11 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnadd1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(67, 67, 67)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -539,7 +580,9 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -554,14 +597,6 @@ public class FRMmascotaup extends javax.swing.JInternalFrame {
 
     }
     
-    private void btnbqdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbqdaActionPerformed
- FRMbqdacliente obj = new FRMbqdacliente();
-      Home.desktopPane.add(obj);
-      obj.toFront();
-  obj.setFormulario2(this);    
-      obj.setVisible(true);            
-    }//GEN-LAST:event_btnbqdaActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       Date fecha = fnac.getDate();
       long fechas = fecha.getTime();
@@ -587,7 +622,7 @@ int días = periodo.getDays();
 // Muestra el resultado
 String resultado = "Años: " + años + ", Meses: " + meses + ", Días: " + días;
 lbledad.setText(resultado);
-JOptionPane.showMessageDialog(null, resultado);
+
       
       
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -657,7 +692,20 @@ JOptionPane.showMessageDialog(null, resultado);
         cli.setSexo(sexo);
         cli.setPeso(Float.parseFloat(txtpeso.getText()));
         
-        File imageFile = new File(lblruta.getText());
+       
+        cli.setInfadi(txtobs.getText());
+      
+
+      String fechaTexto = txtfecha.getText();
+
+try {
+    LocalDate fechaLocal = LocalDate.parse(fechaTexto);
+    Date fecha2 = java.sql.Date.valueOf(fechaLocal);
+ 
+} catch (Exception e) {
+    // Manejo de errores en caso de que el formato de fecha sea incorrecto
+        
+}        File imageFile = new File(lblruta.getText());
         byte[] imageBytes = new byte[(int) imageFile.length()];
         try (FileInputStream  fileInputStream = new FileInputStream(imageFile)) {
             fileInputStream.read(imageBytes);
@@ -667,21 +715,13 @@ JOptionPane.showMessageDialog(null, resultado);
 
         // Establecer la imagen como un campo BLOB
         cli.setFoto(imageBytes);
-        cli.setInfadi(txtobs.getText());
-      
 
-      String fechaTexto = txtfecha.getText();
 
-try {
-    LocalDate fechaLocal = LocalDate.parse(fechaTexto);
-    Date fecha2 = java.sql.Date.valueOf(fechaLocal);
-    cli.setFcreacion(fecha2);
-} catch (Exception e) {
-    // Manejo de errores en caso de que el formato de fecha sea incorrecto
-}
-        obj.adicion(cli);
+        cli.setId_mascota( Integer.parseInt(txtreg.getText()));
+        obj.modifica(cli);
     
-        JOptionPane.showMessageDialog(null, "AÑADIDO CORRECTAMENTE"); 
+        JOptionPane.showMessageDialog(null, "ACTUALIZADO CORRECTAMENTE"); 
+        dispose();
 
         
         
@@ -710,35 +750,13 @@ try {
          JOptionPane.showMessageDialog(null,"cambio");  
     }//GEN-LAST:event_fnacMouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       int codespecie = 0;
-        
-        String especie = Cboespecie.getSelectedItem().toString();
-        if(especie == "GATOS"){
-        codespecie = 1;
-        }
-        else{ 
-            codespecie = 2;
-        }
-
-        FRMraza obj = new FRMraza();
- //       obj.setFormulario2(this);   
-        obj.setrazavalor(codespecie);
-      Home.desktopPane.add(obj);
-      obj.toFront();
-   //   obj.setFormulario1(this);    
-      obj.setVisible(true);       
-    }//GEN-LAST:event_jButton3ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Cboespecie;
     private javax.swing.JButton btnadd1;
-    private javax.swing.JButton btnbqda;
     private com.toedter.calendar.JDateChooser fnac;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton7;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

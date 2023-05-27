@@ -31,7 +31,8 @@ public class FRMlistamascota extends javax.swing.JInternalFrame {
     public FRMlistamascota() {
         initComponents();
         verlista();
-        
+        btndel.setEnabled(false);
+        btnmod.setEnabled(false);
          cbordenar.removeAllItems();
         cbordenar.addItem("--Seleccione--");
         cbordenar.addItem("Por nombre de mascota");
@@ -340,6 +341,8 @@ for (mascota x : obj.listado()) {
     private void tblmascotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblmascotasMouseClicked
        int f = tblmascotas.getSelectedRow();
         lblcodigo.setText(tblmascotas.getValueAt(f, 0).toString());
+        btndel.setEnabled(true);
+        btnmod.setEnabled(true);
     }//GEN-LAST:event_tblmascotasMouseClicked
 
     private void btnmodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodActionPerformed

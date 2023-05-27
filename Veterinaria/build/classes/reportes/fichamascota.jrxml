@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b3919daf-389a-4729-bd9b-5685d78d3ed3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM `mascotasregistradas2`]]>
+	</queryString>
+	<field name="id_mascota" class="java.lang.Integer"/>
+	<field name="nmascota" class="java.lang.String"/>
+	<field name="fecha_nacimiento" class="java.sql.Date"/>
+	<field name="id_especie" class="java.lang.Integer"/>
+	<field name="id_cliente" class="java.lang.Integer"/>
+	<field name="id_raza" class="java.lang.Integer"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="peso" class="java.math.BigDecimal"/>
+	<field name="infadic" class="java.lang.String"/>
+	<field name="fcreacion" class="java.sql.Date"/>
+	<field name="especie" class="java.lang.String"/>
+	<field name="raza" class="java.lang.String"/>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="celular" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement x="97" y="13" width="384" height="43" uuid="5e322119-5a77-4346-9e9c-62402b81aa40"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FICHA DE REGISTRO MASCOTA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="36" height="20" uuid="2a3adc68-7fb1-47fb-b75b-e97241ae553d"/>
+				<textElement>
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="0" width="61" height="20" uuid="0ef9d7c0-0057-4642-83b3-184bdfdf629f"/>
+				<textElement>
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Mascota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="137" y="0" width="70" height="20" uuid="6b5ff40c-214f-4a89-be2f-3512facee409"/>
+				<textElement>
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Nacimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="0" width="56" height="20" uuid="e532a264-3b58-4a6d-81e3-553dc31dffba"/>
+				<textElement>
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[sexo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="0" width="63" height="20" uuid="9066faba-a0fb-481a-a4a9-e991245af2bc"/>
+				<textElement>
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[raza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="0" width="56" height="20" uuid="9972fa98-a566-4bf2-9d17-d95844a3ed86"/>
+				<textElement>
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[especie]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="0" width="100" height="20" uuid="e9c30a6a-decf-4b75-98b1-ccb02b61ec98"/>
+				<textElement>
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[peso]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="36" height="20" uuid="e9393443-76c8-4011-9871-a76afe1ac1cd"/>
+				<textFieldExpression><![CDATA[$F{id_mascota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="46" y="0" width="71" height="20" uuid="08ea1fe5-2bc4-4696-bf65-06acaafc6822"/>
+				<textFieldExpression><![CDATA[$F{nmascota}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="137" y="0" width="70" height="20" uuid="3e8cd2e6-c893-44fa-88b6-25b39d38bfd6"/>
+				<textFieldExpression><![CDATA[$F{fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="0" width="56" height="20" uuid="e278fa30-6989-4dee-b0b3-bef8c712e33d"/>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="0" width="63" height="20" uuid="eec66d5c-70b2-4dfe-9b7c-101c5c96668f"/>
+				<textFieldExpression><![CDATA[$F{raza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="0" width="56" height="20" uuid="327f0b12-5f14-4f96-ae4d-578de8995121"/>
+				<textFieldExpression><![CDATA[$F{especie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="0" width="100" height="20" uuid="74c6e481-1b05-4375-b546-689406a7e54e"/>
+				<textFieldExpression><![CDATA[$F{peso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="46" y="37" width="100" height="20" uuid="b7f2973d-b8c8-4a4c-9e1f-676f2eaecdcc"/>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="37" width="46" height="20" uuid="cf215d01-38b6-4843-b48e-3cd5415eae1a"/>
+				<textElement>
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="192" y="37" width="173" height="20" uuid="ec41d67b-81b0-47a5-98fe-6a1af23a6af5"/>
+				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="146" y="37" width="46" height="20" uuid="b8951d85-4fea-473a-92e9-3f33f874f178"/>
+				<textElement>
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Correo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="432" y="37" width="100" height="20" uuid="ff20dd3a-2c67-4bae-afa4-ce8c6fadb9a3"/>
+				<textFieldExpression><![CDATA[$F{celular}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="382" y="37" width="46" height="20" uuid="4152808c-df87-4d79-8f7d-4d2471c9a6a5"/>
+				<textElement>
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Celular:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
