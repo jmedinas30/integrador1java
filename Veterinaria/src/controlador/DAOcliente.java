@@ -92,9 +92,71 @@ public class DAOcliente implements Icliente{
         }
       return lista;
     }
+    public List<cliente> listado3(int id) {
+      List<cliente> lista = new ArrayList();
+      
+      Connection cn = ConexionMysql.getConexion();
+      
+        try {
+            String sql = "select * from cliente where id_cliente = ? ";
+            PreparedStatement st = cn.prepareStatement(sql);
+             st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+            cliente ep = new cliente();
+            ep.setIdcliente(rs.getInt(1));
+            ep.setNombre(rs.getString(2));
+            ep.setApellidos(rs.getString(3));
+            ep.setSexo(rs.getString(4));
+            ep.setTdoc(rs.getString(5));
+            ep.setDni(rs.getString(6));
+            ep.setTelefono(rs.getString(7));
+            ep.setCorreo(rs.getString(8));
+            ep.setDireccion(rs.getString(9));
+            ep.setId_dpto(rs.getInt(10));
+            ep.setId_pro(rs.getInt(11));
+            ep.setId_dist(rs.getInt(12));
+            ep.setFoto(rs.getBytes(13));
+            ep.setObs(rs.getString(14));
+            ep.setFcreacion(rs.getString(15));
+            lista.add(ep);
+            
+                
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      return lista;
+    }
   
-  
-  
+      public List<cliente> listado4(int id) {
+      List<cliente> lista = new ArrayList();
+      
+      Connection cn = ConexionMysql.getConexion();
+      
+        try {
+            String sql = "select * from lista_cliente where id_cliente = ? ";
+            PreparedStatement st = cn.prepareStatement(sql);
+             st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+            cliente ep = new cliente();
+           ep.setDep(rs.getString(1));
+            ep.setProv(rs.getString(2));
+            ep.setDist(rs.getString(3));
+            lista.add(ep);
+            
+                
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      return lista;
+    }
   
    public void anula(int id) {
          Connection cn = ConexionMysql.getConexion();
@@ -134,5 +196,33 @@ public class DAOcliente implements Icliente{
         }
       return lista;
 }
-    
+   
+       public void modifica(cliente ep) {
+          Connection cn = ConexionMysql.getConexion();
+        try {
+            String sql= "update cliente set  nombre = ?,apellidos=?, sexo=?,tdoc= ?,dni=?,celular=?,correo=?,direccion=?, id_departamento=?, id_provincia=?, id_distrito=?, foto=?, Observaciones=?, fcreacion=? where id_cliente=?";
+            PreparedStatement st = cn.prepareStatement(sql);
+           
+            st.setString(1, ep.getNombre());
+            st.setString(2, ep.getApellidos());
+            st.setString(3, ep.getSexo());
+            st.setString(4, ep.getTdoc());
+            st.setString(5, ep.getDni());
+            st.setString(6, ep.getTelefono());
+            st.setString(7, ep.getCorreo());
+            st.setString(8, ep.getDireccion());
+           st.setInt(9, ep.getId_dpto());
+           st.setInt(10, ep.getId_pro());
+           st.setInt(11, ep.getId_dist());
+           st.setBytes(12, ep.getFoto());
+            st.setString(13, ep.getObs());
+            st.setString(14, ep.getFcreacion());
+             st.setInt(15, ep.getIdcliente());
+            st.executeUpdate();
+            
+            
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
+    }
 }

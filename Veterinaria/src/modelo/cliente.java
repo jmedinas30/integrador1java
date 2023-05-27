@@ -11,6 +11,48 @@ package modelo;
 public class cliente {
 
     /**
+     * @return the dep
+     */
+    public String getDep() {
+        return dep;
+    }
+
+    /**
+     * @param dep the dep to set
+     */
+    public void setDep(String dep) {
+        this.dep = dep;
+    }
+
+    /**
+     * @return the prov
+     */
+    public String getProv() {
+        return prov;
+    }
+
+    /**
+     * @param prov the prov to set
+     */
+    public void setProv(String prov) {
+        this.prov = prov;
+    }
+
+    /**
+     * @return the dist
+     */
+    public String getDist() {
+        return dist;
+    }
+
+    /**
+     * @param dist the dist to set
+     */
+    public void setDist(String dist) {
+        this.dist = dist;
+    }
+
+    /**
      * @return the foto
      */
     public byte[] getFoto() {
@@ -27,7 +69,7 @@ public class cliente {
     /**
      * @return the sexo
      */
-    public cliente(int idcliente, String nombre, String apellidos, String dni, String telefono, String correo, String direccion, int id_dpto, int id_pro, int id_dist, byte[] foto, String sexo, String tdoc, String obs, String fcreacion) {
+    public cliente(int idcliente, String nombre, String apellidos, String dni, String telefono, String correo, String direccion, int id_dpto, int id_pro, int id_dist, byte[] foto, String sexo, String tdoc, String obs, String fcreacion, String dep, String prov, String dist) {
         this.idcliente = idcliente;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -43,7 +85,12 @@ public class cliente {
         this.tdoc = tdoc;
         this.obs = obs;
         this.fcreacion = fcreacion;
+        this.dep = dep;
+        this.prov = prov;
+        this.dist = dist;
     }
+
+  
 
      private int idcliente;
     private String nombre;
@@ -60,7 +107,9 @@ public class cliente {
     private String tdoc;
     private String obs;
     private String fcreacion;
-    
+    private String dep;
+    private String prov;
+    private String dist;
     
     public cliente(){
     

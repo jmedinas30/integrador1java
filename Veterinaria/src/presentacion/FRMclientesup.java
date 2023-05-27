@@ -25,7 +25,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.ConexionMysql;
 import modelo.cliente;
+import modelo.mascota;
 import modelo.provincia;
+import modelo.raza;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
@@ -42,13 +44,13 @@ public class FRMclientesup extends javax.swing.JInternalFrame {
    String ruta = null;
    ButtonGroup sexo;
    DAOcliente obj = new DAOcliente();
-   
+    private FRMlistaclientes cliente;
     public FRMclientesup() {
         initComponents();  
         sexo = new ButtonGroup();
         sexo.add(rbtmen);
         sexo.add(rbtfem);
-       nuevocliente();
+  //     nuevocliente();
        txtreg.setEnabled(false);
        txtfecha.setEnabled(false);
         cbtipo.removeAllItems();
@@ -57,7 +59,7 @@ public class FRMclientesup extends javax.swing.JInternalFrame {
         cbtipo.addItem("CARNET EXTRANJERIA");
         cbtipo.addItem("PASAPORTE");
         de.listar_departamento(cbodep);
-        btnimp.setEnabled(false);
+    
         
         
         LocalDate fechaActual = LocalDate.now();
@@ -66,7 +68,69 @@ public class FRMclientesup extends javax.swing.JInternalFrame {
         
     }
     
-    void nuevocliente() {
+     public void setFormulario2(FRMlistaclientes cliente) {
+    this.cliente = cliente;
+    
+    
+}
+     
+          public void setrazavalor(int valor ) {
+       int cod = 0;
+       cod = valor;
+   txtreg.setText(String.valueOf(cod));
+
+     
+   for (cliente x:obj.listado3(Integer.parseInt(txtreg.getText()))){
+                
+           txtfecha.setText(x.getFcreacion());
+           txtnom.setText(String.valueOf(x.getNombre()));
+           txtape.setText(String.valueOf(x.getApellidos()));
+           txtfecha.setText(String.valueOf(x.getFcreacion()));
+           String tdoc = x.getTdoc();
+              if(tdoc =="DNI"){
+               cbtipo.setSelectedItem("DNI");
+           }    else if(tdoc =="PASAPORTE"){
+                        cbtipo.setSelectedItem("PASAPORTE");
+                       }else{
+                       cbtipo.setSelectedItem("CARNET EXTRANJERIA");
+           }
+              byte[] imageBytes = x.getFoto(); // Supongamos que x es tu objeto y x.getFoto() devuelve el array de bytes de la imagen
+ImageIcon imageIcon = new ImageIcon(imageBytes);
+// Obtiene la imagen original del ImageIcon
+Image imagenOriginal = imageIcon.getImage();
+// Redimensiona la imagen al tamaño deseado
+Image imagenRedimensionada = imagenOriginal.getScaledInstance(176, 198, Image.SCALE_SMOOTH);
+// Crea un nuevo ImageIcon con la imagen redimensionada
+ImageIcon imagenRedimensionadaIcono = new ImageIcon(imagenRedimensionada);
+
+lblimagen.setIcon(imagenRedimensionadaIcono);
+
+ String  sexo  = x.getSexo();
+           if (sexo == "M"){
+           rbtmen.setSelected(true);
+            } else {
+           rbtfem.setSelected(true);
+           }
+              
+              txtdni.setText(x.getDni());
+              txtcel.setText(x.getTelefono());
+              txtmail.setText(x.getCorreo());
+              txtdir.setText(x.getDireccion());
+              txtobs.setText(x.getObs());        
+           
+            }
+         int cod_cli = Integer.parseInt(txtreg.getText());
+         for (cliente x:obj.listado4(cod_cli)){
+             
+              cbodep.setSelectedItem(x.getDep());
+               cboprov.setSelectedItem(x.getProv());
+              cbodis.setSelectedItem(x.getDist());
+             
+         }
+       
+   
+}
+ /*   void nuevocliente() {
     int maxIdCliente = 0;
 
     for (cliente x : obj.listado()) {
@@ -80,7 +144,8 @@ public class FRMclientesup extends javax.swing.JInternalFrame {
 
     // Aquí puedes utilizar el nuevoIdCliente para realizar alguna acción, como asignarlo a un nuevo cliente.
     // Por ejemplo: cliente nuevoCliente = new cliente(nuevoIdCliente, ...);
-}
+  
+}*/
     
     
 
@@ -133,7 +198,6 @@ public class FRMclientesup extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtobs = new javax.swing.JTextArea();
         jSeparator2 = new javax.swing.JSeparator();
-        btnimp = new javax.swing.JButton();
         btnadd = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -405,18 +469,9 @@ public class FRMclientesup extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnimp.setBackground(new java.awt.Color(0, 102, 102));
-        btnimp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnimp.setText("Imprimir ficha");
-        btnimp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnimpActionPerformed(evt);
-            }
-        });
-
         btnadd.setBackground(new java.awt.Color(0, 102, 102));
         btnadd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnadd.setText("Guardar Cambios");
+        btnadd.setText("Actualizar Cambios");
         btnadd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnaddActionPerformed(evt);
@@ -462,8 +517,6 @@ public class FRMclientesup extends javax.swing.JInternalFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnimp)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnadd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -491,9 +544,7 @@ public class FRMclientesup extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnadd, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnimp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -507,7 +558,7 @@ public class FRMclientesup extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 578, Short.MAX_VALUE)
         );
 
         pack();
@@ -612,9 +663,9 @@ cli.setFoto(imageBytes);
 
        
        
-       obj.adicion(cli);
-         JOptionPane.showMessageDialog(null, "AÑADIDO CORRECTAMENTE");  
-         btnimp.setEnabled(true);
+       obj.modifica(cli);
+         JOptionPane.showMessageDialog(null, "MODIFICADO CORRECTAMENTE");  
+        
          
        
                
@@ -662,27 +713,9 @@ cli.setFoto(imageBytes);
                 Toolkit.getDefaultToolkit().beep();}
     }//GEN-LAST:event_txtcelKeyTyped
 
-    private void btnimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimpActionPerformed
-    
-        String jasperFile = "src/reportes/fichacliente.jasper";
-
- try {
-            // Cargar el archivo Jasper
-            java.sql.Connection con = ConexionMysql.getConexion();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperFile, null,con);
-
-            // Mostrar el informe en el visor JasperViewer
-            JasperViewer.viewReport(jasperPrint, false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-      
-    }//GEN-LAST:event_btnimpActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnadd;
-    private javax.swing.JButton btnimp;
     private javax.swing.JComboBox<String> cbodep;
     private javax.swing.JComboBox<String> cbodis;
     private javax.swing.JComboBox<String> cboprov;

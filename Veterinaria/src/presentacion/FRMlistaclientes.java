@@ -139,6 +139,11 @@ public class FRMlistaclientes extends javax.swing.JInternalFrame {
         btnmod.setBackground(new java.awt.Color(0, 102, 102));
         btnmod.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnmod.setText("Modificar");
+        btnmod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodActionPerformed(evt);
+            }
+        });
 
         btnimp.setBackground(new java.awt.Color(0, 102, 102));
         btnimp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -349,6 +354,17 @@ for (cliente x : obj.listado()) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnimpActionPerformed
+
+    private void btnmodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodActionPerformed
+        // TODO add your handling code here:
+        FRMclientesup obj = new FRMclientesup();
+      Home.desktopPane.add(obj);
+       obj.setFormulario2(this);   
+        obj.setrazavalor(Integer.parseInt(lblcodigo.getText()));
+      
+      obj.toFront();
+      obj.setVisible(true);
+    }//GEN-LAST:event_btnmodActionPerformed
 
     
     void sortnombre(){
