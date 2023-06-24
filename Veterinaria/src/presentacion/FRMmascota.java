@@ -679,6 +679,7 @@ try {
     // Manejo de errores en caso de que el formato de fecha sea incorrecto
 }
         obj.adicion(cli);
+        obj.historia();
     
         JOptionPane.showMessageDialog(null, "AÑADIDO CORRECTAMENTE"); 
        btnimp.setEnabled(true);

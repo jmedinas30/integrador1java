@@ -95,6 +95,38 @@ public class DAOpersonal implements Ipersonal{
         }
      
      }
+       
+       public List<personal> listado() {
+      List<personal> lista = new ArrayList();
+      
+      Connection cn = ConexionMysql.getConexion();
+      
+        try {
+            String sql = "select id_personal,nombres, apellidos, dni,direccion,telefono,correo,estado from personal where tipo_personal='veterinario'";
+            PreparedStatement st = cn.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            
+            while(rs.next()){
+                personal ep = new personal();
+            ep.setIdpersonal(rs.getInt(1));
+            ep.setNombres(rs.getString(2));
+            ep.setApellidos(rs.getString(3));
+            ep.setDni(rs.getString(4));
+            ep.setDireccion(rs.getString(5));
+            ep.setTelef(rs.getString(6));
+            ep.setCorreo(rs.getString(7));
+            ep.setEstado(rs.getString(8));
+           
+            lista.add(ep);
+            
+                
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      return lista;
+    }
 
     
 }

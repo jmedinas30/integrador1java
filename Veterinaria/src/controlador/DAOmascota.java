@@ -44,6 +44,22 @@ public class DAOmascota implements Imascota {
     }
     
     
+     public void historia() {
+          Connection cn = ConexionMysql.getConexion();
+        try {
+            String sql= " INSERT INTO historial_medico(fecha,diagnostico,id_mascota)SELECT curdate() as fecha, '' as diagnostico, id_mascota from mascota";
+              PreparedStatement st = cn.prepareStatement(sql);
+                    
+            st.executeUpdate();
+            
+            
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
+    }
+    
+   
+    
     @Override
      public List<mascota> listado() {
       List<mascota> lista = new ArrayList();

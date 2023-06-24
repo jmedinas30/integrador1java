@@ -24,6 +24,11 @@ public class Home extends javax.swing.JFrame {
       private FRMlistascitas obj6 = null;
      private FRMlistapersonal obj5 = null;
      private FRMprueba obj8 = null;
+     private FRMlistahistorial obj9 = null;
+         private FRMlistamedicos obj10 = null;
+         private FRMreportes obj15 = null;
+         private FRMbackup obj16 = null;
+         
     /**
      * Creates new form Home
      */
@@ -90,8 +95,11 @@ public class Home extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        jMenu11 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
+        jMenu9 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,9 +149,19 @@ public class Home extends javax.swing.JFrame {
         menuBar.add(helpMenu);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/historial.png"))); // NOI18N
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
         menuBar.add(jMenu2);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/medico.png"))); // NOI18N
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
         menuBar.add(jMenu4);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/login.png"))); // NOI18N
@@ -154,6 +172,14 @@ public class Home extends javax.swing.JFrame {
         });
         menuBar.add(jMenu6);
 
+        jMenu11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/personal.png"))); // NOI18N
+        jMenu11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu11MouseClicked(evt);
+            }
+        });
+        menuBar.add(jMenu11);
+
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/ayuda.png"))); // NOI18N
         jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -162,13 +188,29 @@ public class Home extends javax.swing.JFrame {
         });
         menuBar.add(jMenu7);
 
-        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/salir.png"))); // NOI18N
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/reportes.png"))); // NOI18N
         jMenu8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu8MouseClicked(evt);
             }
         });
         menuBar.add(jMenu8);
+
+        jMenu10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/backup.png"))); // NOI18N
+        jMenu10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu10MouseClicked(evt);
+            }
+        });
+        menuBar.add(jMenu10);
+
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/img/salir.png"))); // NOI18N
+        jMenu9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu9MouseClicked(evt);
+            }
+        });
+        menuBar.add(jMenu9);
 
         setJMenuBar(menuBar);
 
@@ -210,7 +252,13 @@ if (obj3 ==null || obj3.isClosed()){
     }//GEN-LAST:event_fileMenuMouseClicked
 
     private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
-dispose();        // TODO add your handling code here:
+if (obj15 ==null || obj15.isClosed()){
+        obj15 = new FRMreportes();
+        desktopPane.add(obj15);
+        
+       }
+       obj15.setVisible(true); 
+                                               // TODO add your handling code here:
     }//GEN-LAST:event_jMenu8MouseClicked
 
     private void helpMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpMenuMouseClicked
@@ -251,6 +299,49 @@ dispose();        // TODO add your handling code here:
     private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
         abrirPDF();
     }//GEN-LAST:event_jMenu7MouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+         if (obj9 ==null || obj9.isClosed()){
+        obj9 = new FRMlistahistorial();
+        desktopPane.add(obj9);
+        
+       }
+       obj9.setVisible(true); 
+                                        
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+         // TODO add your handling code here:
+         if (obj10 ==null || obj10.isClosed()){
+        obj10 = new FRMlistamedicos();
+        desktopPane.add(obj10);
+        
+       }
+       obj10.setVisible(true); 
+    }//GEN-LAST:event_jMenu4MouseClicked
+
+    private void jMenu9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu9MouseClicked
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jMenu9MouseClicked
+
+    private void jMenu10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu10MouseClicked
+        // TODO add your handling code here:
+          if (obj16 ==null || obj16.isClosed()){
+        obj16 = new FRMbackup();
+        desktopPane.add(obj16);
+        
+       }
+       obj16.setVisible(true); 
+    }//GEN-LAST:event_jMenu10MouseClicked
+
+    private void jMenu11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu11MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu11MouseClicked
 
     /**
      * @param args the command line arguments
@@ -305,11 +396,14 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuBar menuBar;

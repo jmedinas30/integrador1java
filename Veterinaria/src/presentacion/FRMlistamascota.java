@@ -44,7 +44,7 @@ public class FRMlistamascota extends javax.swing.JInternalFrame {
         dt.setRowCount(0);
         for (mascota x:obj.listado()){
 
-            Object v [] = {x.getId_mascota(), x.getNombre(), x.getEspecie(),x.getRaza(),  x.getFecha_nac(), x.getSexo(),x.getPeso(),x.getCliente(),  x.getInfadi()};         
+            Object v [] = {x.getId_mascota(), x.getNombre(), x.getEspecie(),x.getRaza(), x.getCliente()  };         
             dt.addRow(v);
             }
         }
@@ -67,12 +67,12 @@ public class FRMlistamascota extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblmascotas = new javax.swing.JTable();
-        btnuevo = new javax.swing.JButton();
         btnmod = new javax.swing.JButton();
         btnimp = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btndel = new javax.swing.JButton();
         lblcodigo = new javax.swing.JLabel();
+        btnmod1 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Listado de mascotas registrados");
@@ -117,13 +117,13 @@ public class FRMlistamascota extends javax.swing.JInternalFrame {
 
         tblmascotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nombre", "Especie", "Raza", "Nacimiento", "sexo", "peso", "Cliente", "Adicional"
+                "Código", "Nombre", "Especie", "Raza", "Cliente"
             }
         ));
         tblmascotas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,15 +132,6 @@ public class FRMlistamascota extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tblmascotas);
-
-        btnuevo.setBackground(new java.awt.Color(0, 102, 102));
-        btnuevo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnuevo.setText("Nuevo");
-        btnuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnuevoActionPerformed(evt);
-            }
-        });
 
         btnmod.setBackground(new java.awt.Color(0, 102, 102));
         btnmod.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -181,6 +172,15 @@ public class FRMlistamascota extends javax.swing.JInternalFrame {
         lblcodigo.setForeground(new java.awt.Color(255, 255, 255));
         lblcodigo.setText("jLabel4");
 
+        btnmod1.setBackground(new java.awt.Color(0, 102, 102));
+        btnmod1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnmod1.setText("Nuevo");
+        btnmod1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmod1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -210,10 +210,10 @@ public class FRMlistamascota extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnimp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnmod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btndel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btndel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnmod1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,8 +235,8 @@ public class FRMlistamascota extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(btnuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87)
+                        .addComponent(btnmod1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnmod, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -261,14 +261,6 @@ public class FRMlistamascota extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnuevoActionPerformed
-      FRMmascota obj = new FRMmascota();
-      Home.desktopPane.add(obj);
-      obj.toFront();
-      obj.setVisible(true);
-      
-    }//GEN-LAST:event_btnuevoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        dispose();
@@ -309,7 +301,7 @@ String nombreFiltro = txtnom.getText(); // Aquí puedes cambiar el valor por el 
 for (mascota x : obj.listado()) {
     // Aplicar filtro por nombre
     if (x.getNombre().equalsIgnoreCase(nombreFiltro)) {
-         Object v [] = {x.getId_mascota(), x.getNombre(), x.getEspecie(),x.getRaza(),  x.getFecha_nac(), x.getSexo(),x.getPeso(),x.getCliente(),  x.getInfadi()};         
+          Object v [] = {x.getId_mascota(), x.getNombre(), x.getEspecie(),x.getRaza(), x.getCliente()  };         
             dt.addRow(v);
     }
 }
@@ -330,7 +322,7 @@ String nombreFiltro = txtdni.getText(); // Aquí puedes cambiar el valor por el 
 for (mascota x : obj.listado()) {
     // Aplicar filtro por nombre
     if (x.getCliente().equalsIgnoreCase(nombreFiltro)) {
-         Object v [] = {x.getId_mascota(), x.getNombre(), x.getEspecie(),x.getRaza(),  x.getFecha_nac(), x.getSexo(),x.getPeso(),x.getCliente(),  x.getInfadi()};         
+ Object v [] = {x.getId_mascota(), x.getNombre(), x.getEspecie(),x.getRaza(), x.getCliente()  };          
             dt.addRow(v);
     }
 }
@@ -398,6 +390,14 @@ String jasperFile = "src/reportes/mascotas.jasper";
 
     }//GEN-LAST:event_btnimpActionPerformed
 
+    private void btnmod1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmod1ActionPerformed
+        // TODO add your handling code here:
+        FRMmascota obj = new FRMmascota();
+      Home.desktopPane.add(obj);
+      obj.toFront();
+      obj.setVisible(true);
+    }//GEN-LAST:event_btnmod1ActionPerformed
+
     
     void sortnombre(){ 
        DefaultTableModel dt = (DefaultTableModel) tblmascotas.getModel();
@@ -407,7 +407,7 @@ List<mascota> mascotas = obj.listado();
 Collections.sort(mascotas, Comparator.comparing(mascota::getNombre)); // Sort the list by the "nombre" column
 
 for (mascota x : mascotas) {
-    Object[] v = {x.getId_mascota(), x.getNombre(), x.getEspecie(), x.getRaza(), x.getFecha_nac(), x.getSexo(), x.getPeso(), x.getCliente(), x.getInfadi()};
+     Object v [] = {x.getId_mascota(), x.getNombre(), x.getEspecie(),x.getRaza(), x.getCliente()  };         
     dt.addRow(v);
 }
     }
@@ -422,7 +422,7 @@ List<mascota> mascotas = obj.listado();
 Collections.sort(mascotas, Comparator.comparing(mascota::getCliente)); // Sort the list by the "nombre" column
 
 for (mascota x : mascotas) {
-    Object[] v = {x.getId_mascota(), x.getNombre(), x.getEspecie(), x.getRaza(), x.getFecha_nac(), x.getSexo(), x.getPeso(), x.getCliente(), x.getInfadi()};
+ Object v [] = {x.getId_mascota(), x.getNombre(), x.getEspecie(),x.getRaza(), x.getCliente()  };         
     dt.addRow(v);
 }
   }
@@ -431,7 +431,7 @@ for (mascota x : mascotas) {
     private javax.swing.JButton btndel;
     private javax.swing.JButton btnimp;
     private javax.swing.JButton btnmod;
-    private javax.swing.JButton btnuevo;
+    private javax.swing.JButton btnmod1;
     private javax.swing.JComboBox<String> cbordenar;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

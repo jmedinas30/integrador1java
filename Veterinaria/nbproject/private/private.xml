@@ -4,30 +4,38 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/modelo/cita.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/reportes/citas2.jrxml</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/controlador/DAOprovincia.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/interfaces/Icita.java</file>
-            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/modelo/raza.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/modelo/historial_medico.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/reportes/parametroprueba.jrxml</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMlistahistorial.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/controlador/DAOcita.java</file>
-            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/controlador/DAOraza.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMlistaclientes.java</file>
-            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/controlador/DAOcontrol_acceso.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/controlador/DAOdepartamento.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMlistamedicos.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/controlador/DAOhistorial_medico.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMclientes.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/modelo/cliente.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/Home.java</file>
-            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/login.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/controlador/DAOpersonal.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMmascota.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMmascotaup.java</file>
-            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/interfaces/Iraza.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMclientesup.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/interfaces/Icliente.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMhistorialdetalle.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/reportes/prueba.jrxml</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/controlador/DAOmascota.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/controlador/DAOcliente.java</file>
-            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/modelo/personal.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMprueba.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMlistascitas.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMagenda.java</file>
-            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/interfaces/Ilicencia.java</file>
-            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/modelo/licencia.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMreportes.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMlistapersonal.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/interfaces/Idepartamento.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/controlador/DAOlicencia.java</file>
+            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/controlador/DAOespecie.java</file>
             <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMlistamascota.java</file>
-            <file>file:/D:/UTP/INTEGRADOR/TRABAJOFINAL/Veterinaria/src/presentacion/FRMraza.java</file>
         </group>
     </open-files>
 </project-private>

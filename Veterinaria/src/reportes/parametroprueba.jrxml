@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7e3a3663-323b-4279-9896-d6850e9e8a42">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tipo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[Select * from vista_reporte2 where descripcion = $P{tipo}]]>
+	</queryString>
+	<field name="id_cita" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="anio" class="java.lang.Integer"/>
+	<field name="mes" class="java.lang.Integer"/>
+	<field name="dia" class="java.lang.Integer"/>
+	<field name="mascota" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cliente" class="java.lang.String"/>
+	<field name="dni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="celular" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Veterinario" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="36" y="4" width="484" height="42" uuid="9324d520-f0c5-4a41-902d-81a3f84314f8"/>
+				<textElement>
+					<font fontName="Arial Black" size="28"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE CITAS POR TIPO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="24" y="0" width="100" height="20" uuid="39de5abd-c2b6-40c9-a776-bcddff40fb53"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="24" height="20" uuid="262fe22e-f896-4b54-8f4b-96ac7f3a4838"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="0" width="53" height="20" uuid="1c646e61-c915-4b0d-b947-ed51078f39fc"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Dni]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="0" width="59" height="20" uuid="36ef84b6-48c5-4536-802d-b8b141a5dc6c"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Mascota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="0" width="76" height="20" uuid="758da3b6-e2bc-40a3-ad31-491b57308901"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="0" width="77" height="20" uuid="0ddfb124-2d2a-434e-8a54-c095b3825661"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Veterinario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="70" height="20" uuid="cd328a09-af7e-4599-a90e-718e9f3b7175"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="0" width="65" height="20" uuid="0f827dd5-76ad-4a39-be6b-d48487df82c7"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="24" height="20" uuid="1b008a81-28dc-42fb-bca6-c4bc2ee1696a"/>
+				<textFieldExpression><![CDATA[$F{id_cita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="0" width="100" height="20" uuid="3fcf1457-b9db-4d21-a8e7-eeef6956f18d"/>
+				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="0" width="59" height="20" uuid="f1c1afa1-290e-43e0-9f74-951da07de6de"/>
+				<textFieldExpression><![CDATA[$F{mascota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="194" y="0" width="53" height="20" uuid="2892a871-3251-4a30-8636-ab427d3b2cec"/>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="0" width="76" height="20" uuid="e11429b0-8a6a-4431-9249-7313f8bafbd0"/>
+				<textFieldExpression><![CDATA[$F{celular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="0" width="77" height="20" uuid="73ab084d-a39d-4ea8-a973-02029931f367"/>
+				<textFieldExpression><![CDATA[$F{Veterinario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="70" height="20" uuid="94d70ee8-3837-4240-be0a-c516366c9286"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="490" y="0" width="65" height="20" uuid="03d032a1-7572-4721-906e-d38536c360ad"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
